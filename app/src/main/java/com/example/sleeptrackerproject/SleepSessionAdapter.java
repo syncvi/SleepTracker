@@ -44,7 +44,6 @@ public class SleepSessionAdapter extends RecyclerView.Adapter<SleepSessionViewHo
         }
         return 0;
     }
-
 }
 
 

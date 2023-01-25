@@ -12,6 +12,7 @@ import androidx.room.Room;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.app.PendingIntent;
 
@@ -23,6 +24,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -36,15 +38,22 @@ import java.util.Observer;
 public class MainActivity extends AppCompatActivity {
 
     private NotificationManagerCompat _notificationManager;
-    private static final String NIGHT_MODE_KEY = "night_mode"; //do preferencji
     private Button _startStopButton;
     private boolean _isTracking = false;
     private long _startTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isNightMode = preferences.getBoolean("isNightMode", false);
+        if (isNightMode) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
 
         //-----------------------WEATHER ACTIVITY SWITCHER-----------------------
@@ -181,13 +190,21 @@ public class MainActivity extends AppCompatActivity {
         if (nightMode == AppCompatDelegate.MODE_NIGHT_YES) {
             // light mode on
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            saveNightModeState(false);
         } else {
             // dark mode on
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            saveNightModeState(true);
         }
 
         // apply
         recreate();
     }
 
+    private void saveNightModeState(boolean isNightMode) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isNightMode", isNightMode);
+        editor.apply();
+    }
 }
