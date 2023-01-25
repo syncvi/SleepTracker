@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.sleeptrackerproject.database.SleepSessionDao;
 import com.example.sleeptrackerproject.database.SleepSessionDatabase;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private Button _startStopButton;
     private boolean _isTracking = false;
     private long _startTime;
+    private int _sessionNumber = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
+
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -122,12 +127,15 @@ public class MainActivity extends AppCompatActivity {
         // make a new sleepsession and put it in the database
         SleepSession session = new SleepSession(startTime, endTime, duration);
         SleepSessionDatabase.getInstance(this).sleepSessionDao().insert(session);
+        _sessionNumber++;
     }
 
     private void deleteAllEntries() {
         // wipe all the sleep sessions
         SleepSessionDao sleepSessionDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
         sleepSessionDao.deleteAll();
+
+
     }
 
 
@@ -180,8 +188,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void editDetails(View v){
         Intent i = new Intent(this, TestActivity.class);
-        String sessionName = (String) ((Button)v).getText();
-        i.putExtra("NAME", sessionName);
+        i.putExtra("SESSION_NUMBER", _sessionNumber);
         startActivity(i);
     }
 

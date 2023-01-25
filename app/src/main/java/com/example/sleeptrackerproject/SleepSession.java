@@ -15,11 +15,23 @@ public class SleepSession {
     private long endTime;
     @ColumnInfo(name = "duration")
     private long duration;
+    @ColumnInfo(name = "session_number")
+    private int sessionNumber;
+    private static int currentSessionNumber = 0;
 
     public SleepSession(long startTime, long endTime, long duration) {
         this.duration = duration;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.sessionNumber = ++currentSessionNumber;
+    }
+
+    public int getSessionNumber() {
+        return sessionNumber;
+    }
+
+    public void setSessionNumber(int sessionNumber) {
+        this.sessionNumber=sessionNumber;
     }
 
     public long getId() {

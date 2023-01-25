@@ -14,12 +14,8 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
         Intent i = getIntent();
-        String sessionName = i.getStringExtra("NAME");
-        if(sessionName == null){
-            ((TextView)findViewById(R.id.textView)).setText("Name of the session");
-        }
-        else {
-            ((TextView)findViewById(R.id.textView)).setText(sessionName);
-        }
+        int sessionNumber = i.getIntExtra("SESSION_NUMBER", 0);
+        String sessionName = "Session " + sessionNumber;
+        ((TextView)findViewById(R.id.textView)).setText(sessionName);
     }
 }
