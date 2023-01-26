@@ -7,34 +7,20 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.room.Room;
-
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.app.PendingIntent;
-
-
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
 import com.example.sleeptrackerproject.database.SleepSessionDao;
 import com.example.sleeptrackerproject.database.SleepSessionDatabase;
-
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -127,6 +113,12 @@ public class MainActivity extends AppCompatActivity {
         // make a new sleepsession and put it in the database
         SleepSession session = new SleepSession(startTime, endTime, duration);
         SleepSessionDatabase.getInstance(this).sleepSessionDao().insert(session);
+        SleepSessionData sessionData = new SleepSessionData(session.getId(), 0, "");
+        //SleepSessionDatabase.getInstance(this).sleepSessionDao().insertData(sessionData);
+        //ID is 0 every time? but sessionNumber increments itself by o=o+1, nice
+        //autoGenerate=true doesn't work, clueless, will tackle it later
+        System.err.println(session.toString());
+        System.err.println(sessionData.toString());
         _sessionNumber++;
     }
 
@@ -134,8 +126,7 @@ public class MainActivity extends AppCompatActivity {
         // wipe all the sleep sessions
         SleepSessionDao sleepSessionDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
         sleepSessionDao.deleteAll();
-
-
+        _sessionNumber=0;
     }
 
 

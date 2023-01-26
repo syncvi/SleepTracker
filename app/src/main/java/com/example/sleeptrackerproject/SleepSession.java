@@ -1,6 +1,7 @@
 package com.example.sleeptrackerproject;
 
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -64,5 +65,17 @@ public class SleepSession {
 
     public void setDuration(long duration) {
         this.duration = duration;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return "SleepSession{" +
+                "id=" + id +
+                ", startTime=" + startTime +
+                ", endTime='" + endTime + '\'' +
+                ", duration=" + duration +
+                ", sessionNumber=" + sessionNumber +
+                '}';
     }
 }

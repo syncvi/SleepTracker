@@ -5,11 +5,11 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
-import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
 import com.example.sleeptrackerproject.SleepSession;
+import com.example.sleeptrackerproject.SleepSessionData;
 
 import java.util.List;
 
@@ -32,4 +32,18 @@ public interface SleepSessionDao {
 
     @Query("DELETE FROM sleep_session")
     void deleteAll();
+
+    @Insert
+    void insertData(SleepSessionData sleepSessionData);
+
+    @Update
+    void updateData(SleepSessionData sleepSessionData);
+
+    @Delete
+    void deleteData(SleepSessionData sleepSessionData);
+
+    @Query("SELECT * FROM sleep_session_data WHERE session_id = :sessionId")
+    SleepSessionData getSessionData(long sessionId);
+
+
 }

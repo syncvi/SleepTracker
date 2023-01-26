@@ -2,13 +2,14 @@ package com.example.sleeptrackerproject.database;
 
 import android.content.Context;
 import com.example.sleeptrackerproject.SleepSession;
+import com.example.sleeptrackerproject.SleepSessionData;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {SleepSession.class}, version = 3, exportSchema = false)
+@Database(entities = {SleepSession.class, SleepSessionData.class}, version = 5, exportSchema = false)
 public abstract class SleepSessionDatabase extends RoomDatabase {
     public abstract SleepSessionDao sleepSessionDao();
 
@@ -25,6 +26,5 @@ public abstract class SleepSessionDatabase extends RoomDatabase {
         }
         return _dbInstance;
     }
-
-    }
+}
 
