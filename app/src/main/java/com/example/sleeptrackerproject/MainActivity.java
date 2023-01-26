@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private Chronometer _chronometer;
     private boolean _isRunning;
     private int _itemCount = 0;
+    private float averageDuration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
         _chronometer.start();
         _isRunning = true;
         _chronometer.setVisibility(View.VISIBLE);
-        _startTime = System.currentTimeMillis();
+        _startTime = System.currentTimeMillis() /1000;
         _isTracking = true;
         _startStopButton.setText("Stop");
     }
@@ -135,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         _chronometer.stop();
         _isRunning = false;
         _chronometer.setVisibility(View.GONE);
-        long endTime = System.currentTimeMillis();
+        long endTime = System.currentTimeMillis()/1000;
         long duration = endTime - _startTime;
         _isTracking = false;
         _startStopButton.setText("Start"); //change it to android resources later
@@ -154,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
                 for (SleepSession sleepSession : sleepSessions) {
                     totalDuration += sleepSession.getDuration();
                 }
-                long averageDuration = totalDuration / sleepSessions.size();
+                averageDuration = totalDuration / sleepSessions.size();
                 TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
                 averageSleepTimeTextView.setText(String.format("%.2f hours", averageDuration / 3600.0));
             }
@@ -233,6 +234,12 @@ public class MainActivity extends AppCompatActivity {
     public void editDetails(View v){
         Intent i = new Intent(this, TestActivity.class);
         i.putExtra("SESSION_NUMBER", _sessionNumber);
+        startActivity(i);
+    }
+
+    public void sleepAdvice(View v){
+        Intent i = new Intent(this, SleepAdvice.class);
+        i.putExtra("SLEEP_AVERAGE", averageDuration);
         startActivity(i);
     }
 

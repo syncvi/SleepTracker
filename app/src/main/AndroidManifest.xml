@@ -17,6 +17,13 @@
         android:theme="@style/Theme.SleepTrackerProject"
         tools:targetApi="31">
         <activity
+            android:name=".SleepAdvice"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".WeatherActivity"
             android:exported="false">
             <meta-data
