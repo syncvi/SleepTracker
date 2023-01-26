@@ -157,6 +157,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="150dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginTop="296dp"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sleep_session_recycler_view"
         android:layout_width="293dp"

@@ -14,9 +14,14 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.app.PendingIntent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Chronometer;
+import android.widget.TextView;
+
 import com.example.sleeptrackerproject.database.SleepSessionDao;
 import com.example.sleeptrackerproject.database.SleepSessionDatabase;
 import java.util.List;
@@ -29,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean _isTracking = false;
     private long _startTime;
     private int _sessionNumber = 0;
+    private Chronometer _chronometer;
+    private boolean _isRunning;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +48,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
 
-
-        //-----------------------WEATHER ACTIVITY SWITCHER-----------------------
+    //-----------------------WEATHER ACTIVITY SWITCHER-----------------------
         Button weatherButton = (Button) findViewById(R.id.weather_button);
         weatherButton.setOnClickListener(new View.OnClickListener() { //change to lambda later
             @Override
@@ -70,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         //-----------------------SLEEP SESSIONS TRACKING-----------------------
+        _chronometer = findViewById(R.id.chronometer);
         _startStopButton = findViewById(R.id.start_stop_button);
         _startStopButton.setOnClickListener(v -> {
             if (_isTracking) {
@@ -94,12 +100,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void startTracking() {
+        _chronometer.setBase(SystemClock.elapsedRealtime());
+        _chronometer.start();
+        _isRunning = true;
+        _chronometer.setVisibility(View.VISIBLE);
         _startTime = System.currentTimeMillis();
         _isTracking = true;
         _startStopButton.setText("Stop");
     }
 
     private void stopTracking() {
+        _chronometer.stop();
+        _isRunning = false;
+        _chronometer.setVisibility(View.GONE);
         long endTime = System.currentTimeMillis();
         long duration = endTime - _startTime;
         _isTracking = false;
