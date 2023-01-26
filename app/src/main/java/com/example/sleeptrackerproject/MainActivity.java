@@ -7,6 +7,8 @@ import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Intent;
@@ -96,6 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         sleepSessionsLiveData.observe(this, sleepSessions -> {
+            updateAverageSleepTime();
             adapter.notifyDataSetChanged();
             _itemCount = sleepSessions.size();
             System.err.println(_itemCount);
@@ -108,7 +111,14 @@ public class MainActivity extends AppCompatActivity {
 
         //-----------------------CLEAR ALL SLEEP SESSIONS-----------------------
         Button deleteAllButton = findViewById(R.id.delete_all_button);
-        deleteAllButton.setOnClickListener(v -> new Thread(this::deleteAllEntries).start());
+        deleteAllButton.setOnClickListener(v ->
+        {
+            new Thread(this::deleteAllEntries).start();
+            TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
+            averageSleepTimeTextView.setText("0");
+
+        });
+
     }
 
     private void startTracking() {
@@ -133,6 +143,24 @@ public class MainActivity extends AppCompatActivity {
         new Thread(() -> createSleepSessionEntry(_startTime, endTime, duration)).start();
 
     }
+
+    @SuppressLint("DefaultLocale")
+    public void updateAverageSleepTime() {
+        SleepSessionDao sleepSessionDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
+        LiveData<List<SleepSession>> sleepSessionsLiveData = sleepSessionDao.getAllSleepSessions();
+        sleepSessionsLiveData.observe(this, sleepSessions -> {
+            if (sleepSessions != null && !sleepSessions.isEmpty()) {
+                long totalDuration = 0;
+                for (SleepSession sleepSession : sleepSessions) {
+                    totalDuration += sleepSession.getDuration();
+                }
+                long averageDuration = totalDuration / sleepSessions.size();
+                TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
+                averageSleepTimeTextView.setText(String.format("%.2f hours", averageDuration / 3600.0));
+            }
+        });
+    }
+
 
     private void createSleepSessionEntry(long startTime, long endTime, long duration) {
         // make a new sleepsession and put it in the database
