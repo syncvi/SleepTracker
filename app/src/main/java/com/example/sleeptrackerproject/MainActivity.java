@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private int _sessionNumber = 0;
     private Chronometer _chronometer;
     private boolean _isRunning;
+    private int _itemCount = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,7 +93,18 @@ public class MainActivity extends AppCompatActivity {
         LiveData<List<SleepSession>> sleepSessionsLiveData = sleepSessionDao.getAllSleepSessions();
         SleepSessionAdapter adapter = new SleepSessionAdapter(sleepSessionsLiveData);
         recyclerView.setAdapter(adapter);
-        sleepSessionsLiveData.observe(this, sleepSessions -> adapter.notifyDataSetChanged()); //sonarLint says that we shouldn't use it but w/e
+
+
+        sleepSessionsLiveData.observe(this, sleepSessions -> {
+            adapter.notifyDataSetChanged();
+            _itemCount = sleepSessions.size();
+            System.err.println(_itemCount);
+            TextView sessionCountTextView = findViewById(R.id.session_count_text_view);
+            sessionCountTextView.setText(String.valueOf(_itemCount));
+        });
+
+
+
 
         //-----------------------CLEAR ALL SLEEP SESSIONS-----------------------
         Button deleteAllButton = findViewById(R.id.delete_all_button);
