@@ -25,6 +25,7 @@ public class WeatherActivity extends AppCompatActivity {
     private TextView _temperatureTextView;
     private LocationManager _locationManager;
     private LocationListener _locationListener;
+    private double temperature;
     private static final String WEATHER_URL_BASE = "https://api.openweathermap.org/data/2.5/weather?lat=";
     private Executor _executor = Executors.newSingleThreadExecutor();
 
@@ -45,6 +46,18 @@ public class WeatherActivity extends AppCompatActivity {
             String weatherUrl = WEATHER_URL_BASE + latitude + "&lon=" + longitude + "&appid=" + apiKey;
             //executor so it does stuff in the background and doesn't freeze an entire app
             _executor.execute(() -> getWeather(weatherUrl));
+
+            if(temperature-273.15<10.0){
+                NotificationHelper.sendNotification(this,"Good morning!", "It's a bit chilly outside, better prepare some warm clothes!");
+            }
+
+            else if (temperature-273.15>15.0){
+                NotificationHelper.sendNotification(this,"Good morning!", "Hey! The sun's out. Better catch up!");
+            }
+
+            else if (temperature-273.15>20.0){
+                NotificationHelper.sendNotification(this,"Good morning!", "It's hot today! Remember to drink a lot of water.");
+            }
         };
     }
 
@@ -85,11 +98,10 @@ public class WeatherActivity extends AppCompatActivity {
             JSONObject json = new JSONObject(result.toString());
             JSONObject main = json.getJSONObject("main");
 
-            double temperature = main.getDouble("temp") - 273.15;
+            temperature = main.getDouble("temp") - 273.15;
             final String temperatureString = String.format("%.2f", temperature) + " \u00B0C";
 
             runOnUiThread(() -> _temperatureTextView.setText(temperatureString));
-
 
         }
 

@@ -202,33 +202,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    public void sendNotification(String title, String message) {
-        // create an explicit intent for an Activity
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, 0);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, "my_channel_id")
-                .setSmallIcon(R.drawable.ic_notification)
-                .setContentTitle(title)
-                .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
-
-        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(this);
-
-        // notificationId is a unique int for each notification that you must define
-        notificationManager.notify(123, builder.build());
-    }
-
-
-
     public void checkSensors(View v) {
         Intent intent = new Intent(this, SensorActivity.class);
         startActivity(intent);
-        sendNotification("Environment", "Sensor check commencing...");
+        NotificationHelper.sendNotification(this,"Environment", "Sensor check commencing...");
     }
 
     public void editDetails(View v){
