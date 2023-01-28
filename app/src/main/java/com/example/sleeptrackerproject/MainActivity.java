@@ -2,7 +2,6 @@ package com.example.sleeptrackerproject;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,12 +10,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.annotation.SuppressLint;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Build;
-import android.app.PendingIntent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.view.View;
@@ -39,7 +41,15 @@ public class MainActivity extends AppCompatActivity {
     private Chronometer _chronometer;
     private boolean _isRunning;
     private int _itemCount = 0;
-    private float averageDuration;
+    private float _averageDuration;
+
+    private SensorManager _sensorManager;
+    private Sensor _accelerometer;
+    private float _acceleration;
+    private float _currentAcceleration;
+    private float _lastAcceleration;
+
+    //-----------------------LIFECYCLE-----------------------
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -117,10 +127,52 @@ public class MainActivity extends AppCompatActivity {
             new Thread(this::deleteAllEntries).start();
             TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
             averageSleepTimeTextView.setText("0");
-
         });
 
     }
+
+
+    //lmao it works, but need to change acceleration to 1.5 or something tho
+    //hard to change all the 3 values at once in the emulator
+    private final SensorEventListener _sensorEventListener = new SensorEventListener() {
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            float x = event.values[0];
+            float y = event.values[1];
+            float z = event.values[2];
+
+            _lastAcceleration = _currentAcceleration;
+            // current acceleration calculated using pythagorean theorem
+            _currentAcceleration = (float) Math.sqrt(x * x + y * y + z * z);
+            _acceleration = _currentAcceleration * (_currentAcceleration - _lastAcceleration);
+
+            if (_acceleration > 2) {
+                stopTracking();
+            }
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            // might use it, might not, no ale poki co useless dla nas
+        }
+    };
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        _sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        _accelerometer = _sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        _sensorManager.registerListener(_sensorEventListener, _accelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        _sensorManager.unregisterListener(_sensorEventListener);
+    }
+
+    //-----------------------METHODS-----------------------
 
     private void startTracking() {
         _chronometer.setBase(SystemClock.elapsedRealtime());
@@ -155,9 +207,9 @@ public class MainActivity extends AppCompatActivity {
                 for (SleepSession sleepSession : sleepSessions) {
                     totalDuration += sleepSession.getDuration();
                 }
-                averageDuration = totalDuration / sleepSessions.size();
+                _averageDuration = totalDuration / sleepSessions.size();
                 TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
-                averageSleepTimeTextView.setText(String.format("%.2f hours", averageDuration / 3600.0));
+                averageSleepTimeTextView.setText(String.format("%.2f hours", _averageDuration / 3600.0));
             }
         });
     }
@@ -216,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sleepAdvice(View v){
         Intent i = new Intent(this, SleepAdvice.class);
-        i.putExtra("SLEEP_AVERAGE", averageDuration);
+        i.putExtra("SLEEP_AVERAGE", _averageDuration);
         startActivity(i);
     }
     public void setAlaram(View v){
