@@ -1,9 +1,12 @@
 package com.example.sleeptrackerproject;
 
+import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.concurrent.TimeUnit;
 
 public class SleepSessionViewHolder extends RecyclerView.ViewHolder {
     private TextView _startTimeTextView;
@@ -17,9 +20,16 @@ public class SleepSessionViewHolder extends RecyclerView.ViewHolder {
         _durationTimeTextView = itemView.findViewById(R.id.sleep_session_duration_time_text_view);
     }
 
+    @SuppressLint({"DefaultLocale", "SetTextI18n"})
     public void bind(SleepSession sleepSession) {
-        _startTimeTextView.setText("Start Time: " + sleepSession.getStartTime());
-        _endTimeTextView.setText("End Time: " + sleepSession.getEndTime());
+        long startTime = sleepSession.getStartTime();
+        long endTime = sleepSession.getEndTime();
+        long duration = sleepSession.getDuration();
+        // String.format("%02d : %02d : %02d", TimeUnit.MILLISECONDS.toHours(endTime)%24, TimeUnit.MILLISECONDS.toMinutes(endTime)%60, TimeUnit.MILLISECONDS.toSeconds(endTime)%60));
+        _startTimeTextView.setText("Start Time: " +
+                String.format("%02d : %02d : %02d", (TimeUnit.MILLISECONDS.toHours(startTime)%24)+1, TimeUnit.MILLISECONDS.toMinutes(startTime)%60, TimeUnit.MILLISECONDS.toSeconds(startTime)%60));
+        _endTimeTextView.setText("End Time: " +
+                String.format("%02d : %02d : %02d", (TimeUnit.MILLISECONDS.toHours(endTime)%24)+1, TimeUnit.MILLISECONDS.toMinutes(endTime)%60, TimeUnit.MILLISECONDS.toSeconds(endTime)%60));
         _durationTimeTextView.setText("Duration: " + sleepSession.getDuration());
     }
 }

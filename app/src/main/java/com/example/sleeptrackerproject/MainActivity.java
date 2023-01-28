@@ -197,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
         _isTracking = false;
         _startStopButton.setText("Start"); //change it to android resources later
 
-        new Thread(() -> createSleepSessionEntry(_startTime, endTime, duration)).start();
+        new Thread(() -> createSleepSessionEntry(_startTime*1000, endTime*1000, duration)).start();
 
     }
 
