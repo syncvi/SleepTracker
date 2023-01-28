@@ -13,6 +13,8 @@ import android.location.LocationManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -42,6 +44,7 @@ public class WeatherActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
+        final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         _temperatureTextView =findViewById(R.id.temperature_textview);
         _weatherDescriptionTextView = findViewById(R.id.weather_description_textview);
@@ -57,7 +60,10 @@ public class WeatherActivity extends AppCompatActivity {
             double longitude = location.getLongitude();
             String apiKey = "9a408f1ff1beb4273b2c780b9b805225";
             String weatherUrl = WEATHER_URL_BASE + latitude + "&lon=" + longitude + "&appid=" + apiKey;
-            mapsButton.setOnClickListener(view -> launchGoogleMaps(longitude, latitude));
+            mapsButton.setOnClickListener(view -> {
+                view.startAnimation(myAnim);
+                launchGoogleMaps(longitude, latitude);
+            });
             //executor so it does stuff in the background and doesn't freeze an entire app
             _executor.execute(() -> getWeather(weatherUrl));
 
