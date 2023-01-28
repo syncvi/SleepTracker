@@ -219,6 +219,10 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("SLEEP_AVERAGE", averageDuration);
         startActivity(i);
     }
+    public void setAlaram(View v){
+        Intent i = new Intent(this, AlarmClockActivity.class);
+        startActivity(i);
+    }
 
     protected void toggleNightMode() {
         int nightMode = AppCompatDelegate.getDefaultNightMode();
