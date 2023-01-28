@@ -4,13 +4,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -41,6 +46,9 @@ public class WeatherActivity extends AppCompatActivity {
         _temperatureTextView =findViewById(R.id.temperature_textview);
         _weatherDescriptionTextView = findViewById(R.id.weather_description_textview);
 
+        Button mapsButton = (Button) findViewById(R.id.google_maps_button);
+
+
         _locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         // onLocationChanged lambda
         _locationListener = location -> {
@@ -49,6 +57,7 @@ public class WeatherActivity extends AppCompatActivity {
             double longitude = location.getLongitude();
             String apiKey = "9a408f1ff1beb4273b2c780b9b805225";
             String weatherUrl = WEATHER_URL_BASE + latitude + "&lon=" + longitude + "&appid=" + apiKey;
+            mapsButton.setOnClickListener(view -> launchGoogleMaps(longitude, latitude));
             //executor so it does stuff in the background and doesn't freeze an entire app
             _executor.execute(() -> getWeather(weatherUrl));
 
@@ -129,4 +138,12 @@ public class WeatherActivity extends AppCompatActivity {
 
         catch (Exception e) {e.printStackTrace();}
     }
+
+    public void launchGoogleMaps(double longitude, double latitude) {
+        @SuppressLint("DefaultLocale") String uri = String.format("geo:%f,%f?q=%f,%f", latitude, longitude, latitude, longitude);
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        startActivity(intent);
+    }
+
+
 }
