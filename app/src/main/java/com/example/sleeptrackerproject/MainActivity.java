@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private float _acceleration;
     private float _currentAcceleration;
     private float _lastAcceleration;
+    private boolean _sleepSessionStarted = false;
 
     //-----------------------LIFECYCLE-----------------------
 
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        _sleepSessionStarted = false;
 
     //-----------------------WEATHER ACTIVITY SWITCHER-----------------------
         Button weatherButton = (Button) findViewById(R.id.weather_button);
@@ -146,8 +147,11 @@ public class MainActivity extends AppCompatActivity {
             _currentAcceleration = (float) Math.sqrt(x * x + y * y + z * z);
             _acceleration = _currentAcceleration * (_currentAcceleration - _lastAcceleration);
 
-            if (_acceleration > 2) {
+            if (!_sleepSessionStarted) {
+                _sleepSessionStarted = true;
+            } else if (_acceleration > 2) {
                 stopTracking();
+                _sleepSessionStarted = false;
             }
         }
 
