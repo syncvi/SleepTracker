@@ -12,6 +12,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -23,18 +24,22 @@ import java.util.concurrent.Executors;
 
 public class WeatherActivity extends AppCompatActivity {
     private TextView _temperatureTextView;
+    private TextView _weatherDescriptionTextView;
     private LocationManager _locationManager;
     private LocationListener _locationListener;
     private double temperature;
+    private String _shortWeatherDesc;
     private static final String WEATHER_URL_BASE = "https://api.openweathermap.org/data/2.5/weather?lat=";
     private Executor _executor = Executors.newSingleThreadExecutor();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
 
-        _temperatureTextView = (TextView) findViewById(R.id.temperature_textview);
+        _temperatureTextView =findViewById(R.id.temperature_textview);
+        _weatherDescriptionTextView = findViewById(R.id.weather_description_textview);
 
         _locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
         // onLocationChanged lambda
@@ -47,18 +52,20 @@ public class WeatherActivity extends AppCompatActivity {
             //executor so it does stuff in the background and doesn't freeze an entire app
             _executor.execute(() -> getWeather(weatherUrl));
 
-            if(temperature-273.15<10.0){
+
+            if(temperature<10.0){
                 NotificationHelper.sendNotification(this,"Good morning!", "It's a bit chilly outside, better prepare some warm clothes!");
             }
 
-            else if (temperature-273.15>15.0){
+            else if (temperature>15.0 && temperature <20.0){
                 NotificationHelper.sendNotification(this,"Good morning!", "Hey! The sun's out. Better catch up!");
             }
 
-            else if (temperature-273.15>20.0){
+            else if (temperature>20.0){
                 NotificationHelper.sendNotification(this,"Good morning!", "It's hot today! Remember to drink a lot of water.");
             }
         };
+
     }
 
     @Override
@@ -72,6 +79,7 @@ public class WeatherActivity extends AppCompatActivity {
             // start listening for location updates if we have permissions
             _locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, _locationListener);
         }
+
     }
 
     @Override
@@ -97,11 +105,25 @@ public class WeatherActivity extends AppCompatActivity {
 
             JSONObject json = new JSONObject(result.toString());
             JSONObject main = json.getJSONObject("main");
+            JSONObject wind = json.getJSONObject("wind");
+            JSONArray weather = json.getJSONArray("weather");
+            JSONObject desc = weather.getJSONObject(0);
 
+
+            //System.err.println("Speed equals" + wind.getDouble("speed"));
+            //System.err.println(xd);
+
+            //rainProbability = rain.getString("description");
             temperature = main.getDouble("temp") - 273.15;
+            _shortWeatherDesc = desc.getString("description");
             final String temperatureString = String.format("%.2f", temperature) + " \u00B0C";
+            final String weatherDescriptionString = "Weather description: " + _shortWeatherDesc;
+            //final String rainProbabilityString = "Probability of rain in 1h is" + rainProbability + " %";
 
-            runOnUiThread(() -> _temperatureTextView.setText(temperatureString));
+            runOnUiThread(() -> {
+                _temperatureTextView.setText(temperatureString);
+                _weatherDescriptionTextView.setText(weatherDescriptionString);
+            });
 
         }
 
