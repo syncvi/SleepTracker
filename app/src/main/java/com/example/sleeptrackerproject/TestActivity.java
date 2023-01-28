@@ -18,9 +18,11 @@ public class TestActivity extends AppCompatActivity {
 
     private RatingBar _ratingBar;
     private EditText _textField;
+    private TextView _savedText;
     private SleepSessionData _sessionData;
     private SleepSessionDao _sessionDataDao;
     private int sessionNumber;
+    private String _randText = "Hey, it's good to see you there.";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +36,25 @@ public class TestActivity extends AppCompatActivity {
         sessionNumber = i.getIntExtra("SESSION_NUMBER", 0);
         String sessionName = "Session " + sessionNumber;
         ((TextView) findViewById(R.id.textView)).setText(sessionName);
+        ((TextView) findViewById(R.id.saved_message_text_view)).setText(_randText);
 
         //new Thread(this::setParameters).start();
 
 
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putString("message", _randText);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        _randText = savedInstanceState.getString("message");
+    }
+
 
     public void setParameters(){
         _sessionDataDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
