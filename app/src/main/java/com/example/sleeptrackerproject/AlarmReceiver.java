@@ -13,6 +13,7 @@ import androidx.core.app.NotificationManagerCompat;
 public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
+
         Intent notificationIntent = new Intent(context, AlarmClockActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, notificationIntent, 0);
 
@@ -26,6 +27,12 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManager = NotificationManagerCompat.from(context);
         notificationManager.notify(123, builder.build());
+
+        Intent alarmDialogIntent = new Intent(context, AlarmClockActivity.class);
+        alarmDialogIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        alarmDialogIntent.putExtra("show_dialog", true);
+        context.startActivity(alarmDialogIntent);
     }
+
 }
 

@@ -42,6 +42,10 @@ public class AlarmClockActivity extends AppCompatActivity {
                 setAlarm(hour, minute);
             }
         });
+
+        if (getIntent().getBooleanExtra("show_dialog", false)) {
+            showAlarmDialog();
+        }
     }
 
     private void setAlarm(int hour, int minute) {
@@ -64,6 +68,11 @@ public class AlarmClockActivity extends AppCompatActivity {
         }
 
         Toast.makeText(AlarmClockActivity.this, "Alarm set for " + hour + ":" + minute, Toast.LENGTH_SHORT).show();
+    }
+
+    public void showAlarmDialog() {
+        DialogFragment dialog = new DialogFragment();
+        dialog.show(getSupportFragmentManager(), "DialogFragment");
     }
 
 }
