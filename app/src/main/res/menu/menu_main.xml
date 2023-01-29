@@ -1,17 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
 
     <item
-        android:id="@+id/menu_item_1"
+        android:id="@+id/menu_weather"
         android:title="Weather"
         android:icon="@drawable/ic_cloud"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_item_2"
+        android:id="@+id/set_alarm_button"
+        android:title="Alarm"
+        android:icon="@drawable/ic_baseline_alarm_24"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_darkmode"
         android:title="Dark/Light mode"
         android:icon="@drawable/ic_moon"
-        app:showAsAction="never" />
+        app:showAsAction="always" />
+
 
 </menu>
 

@@ -45,7 +45,6 @@ public class WeatherActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-        //simple animation for the button
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         _temperatureTextView =findViewById(R.id.temperature_textview);
@@ -138,7 +137,7 @@ public class WeatherActivity extends AppCompatActivity {
             temperature = main.getDouble("temp") - 273.15;
             _shortWeatherDesc = desc.getString("description");
             @SuppressLint("DefaultLocale") final String temperatureString = String.format("%.2f", temperature) + " \u00B0C";
-            final String weatherDescriptionString = getString(R.string.weather_description) + _shortWeatherDesc;
+            final String weatherDescriptionString = _shortWeatherDesc;
             //final String rainProbabilityString = "Probability of rain in 1h is" + rainProbability + " %";
 
             runOnUiThread(() -> {
