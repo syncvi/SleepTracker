@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".WeatherActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/textview_bg"
+        android:layout_margin="20dp"
+        android:padding="10dp"
+        >
+        <TextView
+            android:id="@+id/temperature_textview_title"
+            android:text="@string/weather_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            style="@style/styleForMainTextAdvice"
+            />
+        <TextView
+            android:id="@+id/temperature_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_below="@id/temperature_textview_title"
+            />
+        <TextView
+            android:id="@+id/weather_description_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            android:layout_below="@id/temperature_textview"
+            />
+
+        <Button
+            android:id="@+id/google_maps_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Google Maps"
+            android:layout_below="@id/weather_description_textview"
+            />
+    </RelativeLayout>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
