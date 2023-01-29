@@ -59,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
         boolean isNightMode = preferences.getBoolean("isNightMode", false);
         if (isNightMode) {
+            // appcompatdelegate let's us work with material design
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
@@ -71,10 +72,7 @@ public class MainActivity extends AppCompatActivity {
 
         //-----------------------NOTIFICATION CHANNEL AND MANAGER-----------------------
         createNotificationChannel();
-        _notificationManager = NotificationManagerCompat.from(this);
-
-
-
+        //_notificationManager = NotificationManagerCompat.from(this);
 
         //-----------------------SLEEP SESSIONS TRACKING-----------------------
         _chronometer = findViewById(R.id.chronometer);
@@ -88,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         RecyclerView recyclerView = findViewById(R.id.sleep_session_recycler_view);
+        // linear layout manager that just puts items in a column
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
         SleepSessionDao sleepSessionDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
@@ -112,9 +111,10 @@ public class MainActivity extends AppCompatActivity {
         Button deleteAllButton = findViewById(R.id.delete_all_button);
         deleteAllButton.setOnClickListener(v ->
         {
+            // accesing db on a thread so app stays responsive
             new Thread(this::deleteAllEntries).start();
             TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
-            averageSleepTimeTextView.setText("0:00 hours");
+            averageSleepTimeTextView.setText("0:00h");
         });
 
     }

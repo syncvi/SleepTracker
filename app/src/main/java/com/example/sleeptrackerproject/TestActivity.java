@@ -64,7 +64,8 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void onSaveButtonClick(View v) {
-        new Thread(() -> {float rating = _ratingBar.getRating();
+        new Thread(() -> {
+            float rating = _ratingBar.getRating();
             String text = _textField.getText().toString();
 
             _sessionData.setRating(rating);

@@ -17,8 +17,11 @@ public class NotificationHelper {
 
     public static void sendNotification(Context context, String title, String message) {
         // create an explicit intent for an Activity
+        // when user taps the noti it starts main activity
         Intent intent = new Intent(context, MainActivity.class);
+        // new activity should be started and any existing tasks should be cleared
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        // when user taps the noti it starts main activity
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "my_channel_id")

@@ -25,9 +25,6 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
     //MainActivity _mainActivity = ((MainActivity) getApplicationContext()).getInstance();
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,11 +34,7 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         _lightSensor = _sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         _humiditySensor = _sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         _temperatureSensor = _sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
-
-
     }
-
-
 
     @Override
     public void onSensorChanged(SensorEvent event) {

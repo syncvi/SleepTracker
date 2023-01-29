@@ -151,10 +151,9 @@ public class WeatherActivity extends AppCompatActivity {
     }
 
     public void launchGoogleMaps(double longitude, double latitude) {
+        // opens an app that is used for opening location in a map, android will use GoogleMaps by default
         @SuppressLint("DefaultLocale") String uri = String.format("geo:%f,%f?q=%f,%f", latitude, longitude, latitude, longitude);
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
         startActivity(intent);
     }
-
-
 }

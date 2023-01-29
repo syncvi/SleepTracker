@@ -60,6 +60,7 @@ public class AlarmClockActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(AlarmClockActivity.this, AlarmReceiver.class);
+        // if a pending intent of a request code already exists, keep it but update it's contetns
         PendingIntent pendingIntent = PendingIntent.getBroadcast(AlarmClockActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
