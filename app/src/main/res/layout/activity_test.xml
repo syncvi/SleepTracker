@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TestActivity"
-    android:background="@drawable/textview_bg"
-    android:padding="10dp"
-    android:layout_gravity="bottom">
-
+    tools:context=".TestActivity">
 
     <TextView
         android:id="@+id/textView"
@@ -41,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.widget.Button
+    <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -49,8 +45,6 @@
         android:layout_marginBottom="408dp"
         android:onClick="onSaveButtonClick"
         android:text="Save"
-        android:background="@drawable/button_bg"
-
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

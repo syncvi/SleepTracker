@@ -11,11 +11,9 @@
     <string name="cold_noti">Na zewnątrz jest chłodno, lepiej załóż coś ciepłego!</string>
     <string name="warm_noti">Hej! Słońce już wstało i jest wysoko, teraz pora na Ciebie!</string>
     <string name="hot_noti">Dziś jest gorąco, pamiętaj aby spożywać dużo płynów.</string>
-    <string name="weather_title">Pogoda na dzisiaj:</string>
-    <string name="not_enough_sleep_title">Śpisz za krótko!\nSpróbuj zrobić te rzeczy by poprawić jakość snu:\n</string>
-    <string name="not_enough_sleep">Trzymaj się stałego harmonogramu snu, nawet w weekendy.\nOgranicz spożycie kofeiny.\nUstal relaksującą rutynę przed snem.\nWyłącz elektronikę na godzinę przed snem.\nStwórz środowisko sprzyjające spaniu.</string>
-    <string name="too_much_sleep_title">Śpisz za długo!\nSpróbuj zrobić te rzeczy by poprawić jakość snu\n</string>
-    <string name="too_much_sleep">Staraj się utrzymywać regularny harmonogram snu.\nOgranicz drzemki w ciągu dnia.\nUnikaj kofeiny i alkoholu przed snem.\nAngażuj się w regularną aktywność fizyczną.\nPorozmawiaj z lekarzem o wszelkich podstawowych schorzeniach.</string>
+    <string name="weather_description">\"Opis pogody: \"</string>
+    <string name="not_enough_sleep">Śpisz za mało! Zadbaj o siebie.</string>
+    <string name="too_much_sleep">Śpisz za dużo! To niezdrowe.</string>
     <string name="good_sleep">Śpisz wystarczająco.</string>
     <string name="too_bright">W pomieszczeniu jest za jasno, aby sen był jakościowy.</string>
     <string name="optimal_bright">Oświetlenie jest optymalne dla dobrej jakości snu.</string>
@@ -23,5 +21,4 @@
     <string name="optimal_humid">Wilgotność w pomieszczeniu jest optymalna</string>
     <string name="too_temp">W pomieszczeniu jest za gorąco.</string>
     <string name="optimal_temp">Temperatura w pomieszczeniu jest optymalna dla dobrej jakości snu.</string>
-    <string name="sensor_not_work">Czujnik nie działa, lub się jeszcze nie zaaktualizował</string>
 </resources>

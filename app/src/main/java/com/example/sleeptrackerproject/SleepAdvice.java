@@ -26,16 +26,13 @@ public class SleepAdvice extends AppCompatActivity {
         System.err.println(_totalSecs);
         System.err.println(_totalHours);
         if(averageDuration<1){
-            ((TextView) findViewById(R.id.advice_text_title_view)).setText(R.string.not_enough_sleep_title);
             ((TextView) findViewById(R.id.advice_text_view)).setText(R.string.not_enough_sleep);
         }
         else if(averageDuration>5){
-            ((TextView) findViewById(R.id.advice_text_title_view)).setText(R.string.too_much_sleep_title);
             ((TextView) findViewById(R.id.advice_text_view)).setText(R.string.too_much_sleep);
         }
         else{
-            ((TextView) findViewById(R.id.advice_text_title_view)).setText(R.string.good_sleep);
-            ((TextView) findViewById(R.id.advice_text_view)).setText("");
+            ((TextView) findViewById(R.id.advice_text_view)).setText(R.string.good_sleep);
         }
     }
 }
