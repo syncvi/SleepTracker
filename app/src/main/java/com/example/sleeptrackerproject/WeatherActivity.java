@@ -45,7 +45,6 @@ public class WeatherActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_weather);
-        //simple animation for the button
         final Animation myAnim = AnimationUtils.loadAnimation(this, R.anim.bounce);
 
         _temperatureTextView =findViewById(R.id.temperature_textview);

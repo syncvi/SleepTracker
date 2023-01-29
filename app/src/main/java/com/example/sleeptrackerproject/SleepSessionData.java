@@ -11,7 +11,7 @@ import androidx.room.Room;
 
 @Entity(tableName = "sleep_session_data",
         foreignKeys = @ForeignKey(entity = SleepSession.class,
-                parentColumns = "sessionNumber",
+                parentColumns = "id",
                 childColumns = "session_id",
                 onDelete = CASCADE))
 public class SleepSessionData {

@@ -44,4 +44,6 @@ public interface SleepSessionDao {
 
     @Query("SELECT * FROM sleep_session_data WHERE session_id = :sessionId")
     SleepSessionData getSessionData(long sessionId);
+
+
 }
