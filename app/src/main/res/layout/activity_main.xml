@@ -6,71 +6,55 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/weather_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
-        android:text="Show Weather"
-        app:layout_constraintBottom_toTopOf="@+id/launch_sensor_activity_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.857" />
 
-    <Button
-        android:id="@+id/toggle_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="Dark Mode"
+    <android.widget.Button
+        android:id="@+id/button"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/button_bg"
+        android:onClick="sleepAdvice"
+
+        android:text="Advice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.086"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginBottom="376dp"
-        android:onClick="sleepAdvice"
-        android:text="Advice"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+    <android.widget.Button
+        android:id="@+id/start_stop_button"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="124dp"
+        android:background="@drawable/button_bg"
+        android:text="Start"
 
-    <Button
-        android:id="@+id/set_alarm_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="300dp"
-        android:layout_marginBottom="328dp"
-        android:onClick="setAlaram"
-        android:text="Alarm"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="104dp"
-        android:layout_height="103dp"
+        android:layout_width="180dp"
+        android:layout_height="100dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="180dp"
-        android:background="#9C27B0"
-        android:foreground="@color/purple_200"
+        android:layout_marginTop="16dp"
+        android:foreground="@drawable/textview_bg"
         android:src="@color/purple_200"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@color/purple_200"
-        tools:srcCompat="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:layout_width="237dp"
+        android:layout_width="180dp"
         android:layout_height="100dp"
-        android:layout_marginStart="152dp"
-        android:layout_marginTop="180dp"
-        android:foreground="@color/teal_200"
+        android:layout_marginStart="224dp"
+        android:layout_marginTop="16dp"
+        android:foreground="@drawable/textview_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
@@ -83,10 +67,10 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton"
         app:layout_constraintEnd_toEndOf="@+id/imageButton"
-        app:layout_constraintHorizontal_bias="0.467"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageButton"
         app:layout_constraintTop_toTopOf="@+id/imageButton"
-        app:layout_constraintVertical_bias="0.833" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/textView4"
@@ -96,62 +80,49 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/imageButton2"
         app:layout_constraintEnd_toEndOf="@+id/imageButton2"
-        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="@+id/imageButton2"
         app:layout_constraintTop_toTopOf="@+id/imageButton2"
-        app:layout_constraintVertical_bias="0.833" />
+        app:layout_constraintVertical_bias="0.8" />
 
-    <Button
+
+    <android.widget.Button
         android:id="@+id/launch_sensor_activity_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_width="180dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="192dp"
+        android:background="@drawable/button_bg"
         android:onClick="checkSensors"
         android:text="Environment Check"
+
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.969"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/start_stop_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="Start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-    <Button
-        android:id="@+id/delete_all_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:layout_marginBottom="108dp"
-        android:text="Clear"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-
     <Chronometer
         android:id="@+id/chronometer"
-        android:layout_width="150dp"
+        android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginStart="68dp"
-        android:layout_marginTop="296dp"
-        android:textSize="36sp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="192dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:textSize="32sp"
         android:textStyle="bold"
-        android:visibility="gone"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sleep_session_recycler_view"
-        android:layout_width="293dp"
-        android:layout_height="430dp"
+        android:layout_width="381dp"
+        android:layout_height="376dp"
         android:layout_below="@id/start_stop_button"
-        android:layout_marginTop="372dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="312dp"
         android:padding="5dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -160,12 +131,27 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <android.widget.Button
+        android:id="@+id/delete_all_button"
+        android:layout_width="388dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="260dp"
+
+        android:background="@drawable/button_bg"
+        android:text="Clear history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/session_count_text_view"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
         android:layout_marginStart="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="0"
         android:textSize="36sp"
         android:textStyle="bold"
@@ -174,11 +160,12 @@
 
     <TextView
         android:id="@+id/average_sleep_time_text_view"
-        android:layout_width="256dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="20dp"
-        android:text="0:00 hours"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:text="0:00h"
         android:textSize="36sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/imageButton2"

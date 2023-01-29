@@ -11,9 +11,11 @@
     <string name="cold_noti">It\'s a bit chilly outside, better prepare some warm clothes!</string>
     <string name="warm_noti">Hey! The sun\'s out. Better catch up!</string>
     <string name="hot_noti">It\'s hot today! Remember to drink a lot of water.</string>
-    <string name="weather_description">\"Weather description: \"</string>
-    <string name="not_enough_sleep">You are not sleeping enough! Take care of yourself.</string>
-    <string name="too_much_sleep">You are sleeping too much, it\'s not healthy!</string>
+    <string name="weather_title">Weather for today:</string>
+    <string name="not_enough_sleep_title">You are not sleeping enough!\nTry try one of these tips:\n</string>
+    <string name="not_enough_sleep">Stick to a consistent sleep schedule, even on weekends.\nLimit caffeine intake.\nEstablish a relaxing bedtime routine.\nTurn off electronics an hour before bed.\nCreate a sleep-conducive environment.</string>
+    <string name="too_much_sleep_title">You are sleeping too much!\nTry one of these tips:\n</string>
+    <string name="too_much_sleep">Try to maintain a regular sleep schedule.\nLimit napping during the day.\nAvoid caffeine and alcohol before bedtime.\Engage in regular physical activity.\nTalk to a doctor about any underlying medical conditions.</string>
     <string name="good_sleep">You are sleeping well enough.</string>
     <string name="too_bright">It\'s too bright to have a good quality sleep.</string>
     <string name="optimal_bright">The lux value in the room is optimal for a good quality sleep.</string>
@@ -21,4 +23,5 @@
     <string name="optimal_humid">Humidity in the room is optimal for a good quality sleep.</string>
     <string name="too_temp">Room temperature is too high to have a good quality sleep.</string>
     <string name="optimal_temp">Temperature in the room is optimal for a good quality sleep.</string>
+    <string name="sensor_not_work">Sensor is not working or it needs to update</string>
 </resources>
