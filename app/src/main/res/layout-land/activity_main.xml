@@ -12,13 +12,13 @@
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginStart="224dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/button_bg"
         android:onClick="sleepAdvice"
 
         android:text="Advice"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.16"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -27,12 +27,12 @@
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="124dp"
+        android:layout_marginTop="176dp"
         android:background="@drawable/button_bg"
         android:text="Start"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -52,8 +52,8 @@
         android:id="@+id/imageButton2"
         android:layout_width="180dp"
         android:layout_height="100dp"
-        android:layout_marginStart="224dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="124dp"
         android:foreground="@drawable/textview_bg"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -90,13 +90,13 @@
         android:id="@+id/launch_sensor_activity_button"
         android:layout_width="180dp"
         android:layout_height="60dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="100dp"
         android:background="@drawable/button_bg"
         android:onClick="checkSensors"
         android:text="Environment Check"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
+        app:layout_constraintHorizontal_bias="0.424"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -105,43 +105,43 @@
         android:layout_width="180dp"
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="192dp"
+        android:layout_marginTop="252dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center"
         android:textSize="32sp"
         android:textStyle="bold"
 
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.411"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sleep_session_recycler_view"
-        android:layout_width="385dp"
-        android:layout_height="561dp"
+        android:layout_width="288dp"
+        android:layout_height="348dp"
         android:layout_below="@id/start_stop_button"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="312dp"
+        android:layout_marginTop="56dp"
         android:padding="5dp"
         android:visibility="visible"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
         android:id="@+id/delete_all_button"
-        android:layout_width="388dp"
-        android:layout_height="40dp"
+        android:layout_width="288dp"
+        android:layout_height="28dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="16dp"
 
         android:background="@drawable/button_bg"
         android:text="Clear history"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
