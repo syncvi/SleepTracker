@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 //maybe we will change it to lombok later idk
 @Entity(tableName = "sleep_session")
 public class SleepSession {
-    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")
     private long id;
     @ColumnInfo(name = "start_time")
     private long startTime;
@@ -16,7 +16,7 @@ public class SleepSession {
     private long endTime;
     @ColumnInfo(name = "duration")
     private long duration;
-    @ColumnInfo(name = "session_number")
+    @PrimaryKey
     private int sessionNumber;
     private static int currentSessionNumber = 0;
 

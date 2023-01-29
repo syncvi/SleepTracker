@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
         SleepSessionDao sleepSessionDao = SleepSessionDatabase.getInstance(this).sleepSessionDao();
         LiveData<List<SleepSession>> sleepSessionsLiveData = sleepSessionDao.getAllSleepSessions();
-        SleepSessionAdapter adapter = new SleepSessionAdapter(sleepSessionsLiveData);
+        SleepSessionAdapter adapter = new SleepSessionAdapter(sleepSessionsLiveData, this);
         recyclerView.setAdapter(adapter);
 
 
@@ -260,7 +260,6 @@ public class MainActivity extends AppCompatActivity {
     private void createNotificationChannel() {
         /* create the NotificationChannel, but only on API 26+ because
         the NotificationChannel class is new and not in the support library */
-        // everything from android docuXDD
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = getString(R.string.channel_name);
             String description = getString(R.string.channel_description);
@@ -281,11 +280,11 @@ public class MainActivity extends AppCompatActivity {
         NotificationHelper.sendNotification(this,"Environment", "Sensor check commencing...");
     }
 
-    public void editDetails(View v){
-        Intent i = new Intent(this, TestActivity.class);
-        i.putExtra("SESSION_NUMBER", _sessionNumber);
-        startActivity(i);
-    }
+//    public void editDetails(View v){
+//        Intent i = new Intent(this, TestActivity.class);
+//        i.putExtra("SESSION_NUMBER", _sessionNumber);
+//        startActivity(i);
+//    }
 
     public void sleepAdvice(View v){
         Intent i = new Intent(this, SleepAdvice.class);

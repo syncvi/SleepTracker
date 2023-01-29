@@ -38,7 +38,7 @@ public class TestActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.textView)).setText(sessionName);
         ((TextView) findViewById(R.id.saved_message_text_view)).setText(_randText);
 
-        //new Thread(this::setParameters).start();
+        new Thread(this::setParameters).start();
 
 
     }
@@ -64,13 +64,14 @@ public class TestActivity extends AppCompatActivity {
     }
 
     public void onSaveButtonClick(View v) {
-        float rating = _ratingBar.getRating();
-        String text = _textField.getText().toString();
+        new Thread(() -> {float rating = _ratingBar.getRating();
+            String text = _textField.getText().toString();
 
-        _sessionData.setRating(rating);
-        _sessionData.setText(text);
+            _sessionData.setRating(rating);
+            _sessionData.setText(text);
 
-        _sessionDataDao.updateData(_sessionData);
+            _sessionDataDao.updateData(_sessionData);}).start();
+
 
         Toast.makeText(this, "Data saved!", Toast.LENGTH_SHORT).show();
     }
