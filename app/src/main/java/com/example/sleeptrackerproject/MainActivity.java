@@ -212,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         _chronometer.setVisibility(View.VISIBLE);
         _startTime = System.currentTimeMillis() /1000;
         _isTracking = true;
-        _startStopButton.setText("Stop");
+        _startStopButton.setText(R.string.Stop);
     }
 
     private void stopTracking() {
@@ -222,7 +222,7 @@ public class MainActivity extends AppCompatActivity {
         long endTime = System.currentTimeMillis()/1000;
         long duration = endTime - _startTime;
         _isTracking = false;
-        _startStopButton.setText("Start"); //change it to android resources later
+        _startStopButton.setText(R.string.Start); //change it to android resources later
 
         new Thread(() -> createSleepSessionEntry(_startTime*1000, endTime*1000, duration)).start();
 

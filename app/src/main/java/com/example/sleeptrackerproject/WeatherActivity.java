@@ -70,15 +70,15 @@ public class WeatherActivity extends AppCompatActivity {
 
             if (_sendNotiOnce){
                 if(temperature<10.0){
-                    NotificationHelper.sendNotification(this,"Good morning!", "It's a bit chilly outside, better prepare some warm clothes!");
+                    NotificationHelper.sendNotification(this, getString(R.string.Notification_title), getString(R.string.cold_noti));
                 }
 
                 else if (temperature>15.0 && temperature <20.0){
-                    NotificationHelper.sendNotification(this,"Good morning!", "Hey! The sun's out. Better catch up!");
+                    NotificationHelper.sendNotification(this, getString(R.string.Notification_title), getString(R.string.warm_noti));
                 }
 
                 else if (temperature>20.0){
-                    NotificationHelper.sendNotification(this,"Good morning!", "It's hot today! Remember to drink a lot of water.");
+                    NotificationHelper.sendNotification(this, getString(R.string.Notification_title), getString(R.string.hot_noti));
                 }
 
                 _sendNotiOnce = false;
@@ -136,8 +136,8 @@ public class WeatherActivity extends AppCompatActivity {
             //rainProbability = rain.getString("description");
             temperature = main.getDouble("temp") - 273.15;
             _shortWeatherDesc = desc.getString("description");
-            final String temperatureString = String.format("%.2f", temperature) + " \u00B0C";
-            final String weatherDescriptionString = "Weather description: " + _shortWeatherDesc;
+            @SuppressLint("DefaultLocale") final String temperatureString = String.format("%.2f", temperature) + " \u00B0C";
+            final String weatherDescriptionString = getString(R.string.weather_description) + _shortWeatherDesc;
             //final String rainProbabilityString = "Probability of rain in 1h is" + rainProbability + " %";
 
             runOnUiThread(() -> {

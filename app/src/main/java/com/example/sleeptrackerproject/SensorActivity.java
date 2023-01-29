@@ -54,10 +54,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             illuminanceTextView.setText(String.valueOf(illuminance));
 
             if(Float.parseFloat((String.valueOf(illuminance)))>5){
-                luxRecommendationTextView.setText("It's too bright to have a good quality sleep.");
+                luxRecommendationTextView.setText(R.string.too_bright);
             }
             else{
-                luxRecommendationTextView.setText("The lux value in the room is optimal for a good quality sleep.");
+                luxRecommendationTextView.setText(R.string.optimal_bright);
             }
         }
         else if (event.sensor.getType() == Sensor.TYPE_RELATIVE_HUMIDITY) {
@@ -68,10 +68,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             humidityTextView.setText(humidity + "%");
 
             if(Float.parseFloat((String.valueOf(humidity)))>60){
-                percentRecommendationTextView.setText("Humidity is too high to have a good quality sleep.");
+                percentRecommendationTextView.setText(R.string.too_humid);
             }
             else{
-                percentRecommendationTextView.setText("Humidity in the room is optimal for a good quality sleep.");
+                percentRecommendationTextView.setText(R.string.optimal_humid);
             }
         }
 
@@ -84,10 +84,10 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
             temperatureTextView.setText(temperature + "C");
 
             if(Float.parseFloat((String.valueOf(temperature)))>19){
-                celsiusRecommendationTextView.setText("Room temperature is too high to have a good quality sleep.");
+                celsiusRecommendationTextView.setText(R.string.too_temp);
             }
             else{
-                celsiusRecommendationTextView.setText("Temperature in the room is optimal for a good quality sleep.");
+                celsiusRecommendationTextView.setText(R.string.optimal_temp);
             }
         }
     }

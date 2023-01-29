@@ -5,4 +5,20 @@
     <string name="reset">Reset</string>
     <string name="channel_name">My Notification Channel</string>
     <string name="channel_description">This is the default notification channel for my app.</string>
+    <string name="Stop">Stop</string>
+    <string name="Start">Start</string>
+    <string name="Notification_title">Good morning!</string>
+    <string name="cold_noti">It\'s a bit chilly outside, better prepare some warm clothes!</string>
+    <string name="warm_noti">Hey! The sun\'s out. Better catch up!</string>
+    <string name="hot_noti">It\'s hot today! Remember to drink a lot of water.</string>
+    <string name="weather_description">\"Weather description: \"</string>
+    <string name="not_enough_sleep">You are not sleeping enough! Take care of yourself.</string>
+    <string name="too_much_sleep">You are sleeping too much, it\'s not healthy!</string>
+    <string name="good_sleep">You are sleeping well enough.</string>
+    <string name="too_bright">It\'s too bright to have a good quality sleep.</string>
+    <string name="optimal_bright">The lux value in the room is optimal for a good quality sleep.</string>
+    <string name="too_humid">Humidity is too high to have a good quality sleep.</string>
+    <string name="optimal_humid">Humidity in the room is optimal for a good quality sleep.</string>
+    <string name="too_temp">Room temperature is too high to have a good quality sleep.</string>
+    <string name="optimal_temp">Temperature in the room is optimal for a good quality sleep.</string>
 </resources>
