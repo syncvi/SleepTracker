@@ -36,6 +36,7 @@ public class WeatherActivity extends AppCompatActivity {
     private LocationListener _locationListener;
     private double temperature;
     private String _shortWeatherDesc;
+    private boolean _sendNotiOnce = true;
     private static final String WEATHER_URL_BASE = "https://api.openweathermap.org/data/2.5/weather?lat=";
     private Executor _executor = Executors.newSingleThreadExecutor();
 
@@ -67,18 +68,22 @@ public class WeatherActivity extends AppCompatActivity {
             //executor so it does stuff in the background and doesn't freeze an entire app
             _executor.execute(() -> getWeather(weatherUrl));
 
+            if (_sendNotiOnce){
+                if(temperature<10.0){
+                    NotificationHelper.sendNotification(this,"Good morning!", "It's a bit chilly outside, better prepare some warm clothes!");
+                }
 
-            if(temperature<10.0){
-                NotificationHelper.sendNotification(this,"Good morning!", "It's a bit chilly outside, better prepare some warm clothes!");
+                else if (temperature>15.0 && temperature <20.0){
+                    NotificationHelper.sendNotification(this,"Good morning!", "Hey! The sun's out. Better catch up!");
+                }
+
+                else if (temperature>20.0){
+                    NotificationHelper.sendNotification(this,"Good morning!", "It's hot today! Remember to drink a lot of water.");
+                }
+
+                _sendNotiOnce = false;
             }
 
-            else if (temperature>15.0 && temperature <20.0){
-                NotificationHelper.sendNotification(this,"Good morning!", "Hey! The sun's out. Better catch up!");
-            }
-
-            else if (temperature>20.0){
-                NotificationHelper.sendNotification(this,"Good morning!", "It's hot today! Remember to drink a lot of water.");
-            }
         };
 
     }

@@ -21,6 +21,8 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
             updateAverageSleepTime();
             adapter.notifyDataSetChanged();
             _itemCount = sleepSessions.size();
-            System.err.println(_itemCount);
+            //System.err.println(_itemCount);
             TextView sessionCountTextView = findViewById(R.id.session_count_text_view);
             sessionCountTextView.setText(String.valueOf(_itemCount));
         });
@@ -127,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         {
             new Thread(this::deleteAllEntries).start();
             TextView averageSleepTimeTextView = findViewById(R.id.average_sleep_time_text_view);
-            averageSleepTimeTextView.setText("0");
+            averageSleepTimeTextView.setText("0:00 hours");
         });
 
     }
@@ -175,6 +177,31 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         _sensorManager.unregisterListener(_sensorEventListener);
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_item_1:
+                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+                startActivity(intent);
+                return true;
+            case R.id.menu_item_2:
+                toggleNightMode();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
 
     //-----------------------METHODS-----------------------
 
