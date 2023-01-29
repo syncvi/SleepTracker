@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SleepTrackerProject</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="channel_name">My Notification Channel</string>
+    <string name="channel_description">This is the default notification channel for my app.</string>
+    <string name="Stop">Stop</string>
+    <string name="Start">Start</string>
+    <string name="Notification_title">Dzień dobry!</string>
+    <string name="cold_noti">Na zewnątrz jest chłodno, lepiej załóż coś ciepłego!</string>
+    <string name="warm_noti">Hej! Słońce już wstało i jest wysoko, teraz pora na Ciebie!</string>
+    <string name="hot_noti">Dziś jest gorąco, pamiętaj aby spożywać dużo płynów.</string>
+    <string name="weather_description">\"Opis pogody: \"</string>
+    <string name="not_enough_sleep">Śpisz za mało! Zadbaj o siebie.</string>
+    <string name="too_much_sleep">Śpisz za dużo! To niezdrowe.</string>
+    <string name="good_sleep">Śpisz wystarczająco.</string>
+    <string name="too_bright">W pomieszczeniu jest za jasno, aby sen był jakościowy.</string>
+    <string name="optimal_bright">Oświetlenie jest optymalne dla dobrej jakości snu.</string>
+    <string name="too_humid">W pomieszczeniu jest zbyt wilgotno!</string>
+    <string name="optimal_humid">Wilgotność w pomieszczeniu jest optymalna</string>
+    <string name="too_temp">W pomieszczeniu jest za gorąco.</string>
+    <string name="optimal_temp">Temperatura w pomieszczeniu jest optymalna dla dobrej jakości snu.</string>
+</resources>
