@@ -69,9 +69,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         _sleepSessionStarted = false;
 
+    //-----------------------WEATHER ACTIVITY SWITCHER-----------------------
+        Button weatherButton = (Button) findViewById(R.id.weather_button);
+        weatherButton.setOnClickListener(new View.OnClickListener() { //change to lambda later
+            @Override
+            public void onClick(View view) {
+                // weather activity is activated when clicked
+                Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //-----------------------DARK MODE ENABLER-----------------------
+        Button toggleButton = (Button) findViewById(R.id.toggle_button);
+        toggleButton.setOnClickListener(view -> toggleNightMode());
+
         //-----------------------NOTIFICATION CHANNEL AND MANAGER-----------------------
         createNotificationChannel();
         _notificationManager = NotificationManagerCompat.from(this);
+
+
+
 
         //-----------------------SLEEP SESSIONS TRACKING-----------------------
         _chronometer = findViewById(R.id.chronometer);
@@ -171,17 +189,13 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.menu_weather:
+            case R.id.menu_item_1:
                 Intent intent = new Intent(MainActivity.this, WeatherActivity.class);
                 startActivity(intent);
                 return true;
-            case R.id.menu_darkmode:
+            case R.id.menu_item_2:
                 toggleNightMode();
                 return true;
-            case R.id.set_alarm_button:
-                setAlarm();
-                return true;
-
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -195,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
         _chronometer.setBase(SystemClock.elapsedRealtime());
         _chronometer.start();
         _isRunning = true;
+        _chronometer.setVisibility(View.VISIBLE);
         _startTime = System.currentTimeMillis() /1000;
         _isTracking = true;
         _startStopButton.setText(R.string.Stop);
@@ -203,6 +218,7 @@ public class MainActivity extends AppCompatActivity {
     private void stopTracking() {
         _chronometer.stop();
         _isRunning = false;
+        _chronometer.setVisibility(View.GONE);
         long endTime = System.currentTimeMillis()/1000;
         long duration = endTime - _startTime;
         _isTracking = false;
@@ -232,15 +248,19 @@ public class MainActivity extends AppCompatActivity {
 
     private void createSleepSessionEntry(long startTime, long endTime, long duration) {
         // make a new sleepsession and put it in the database
+
         SleepSession session = new SleepSession(startTime, endTime, duration);
+        _sessionNumber++;
+        session.setSessionNumber(_sessionNumber);
         SleepSessionDatabase.getInstance(this).sleepSessionDao().insert(session);
-        SleepSessionData sessionData = new SleepSessionData(session.getId(), 0, "");
-        //SleepSessionDatabase.getInstance(this).sleepSessionDao().insertData(sessionData);
+        SleepSessionData sessionData = new SleepSessionData(session.getSessionNumber(), 0, "");
+        SleepSessionDatabase.getInstance(this).sleepSessionDao().insertData(sessionData);
         //ID is 0 every time? but sessionNumber increments itself by o=o+1, nice
         //autoGenerate=true doesn't work, clueless, will tackle it later
         System.err.println(session.toString());
         System.err.println(sessionData.toString());
-        _sessionNumber++;
+
+
     }
 
     private void deleteAllEntries() {
@@ -286,7 +306,7 @@ public class MainActivity extends AppCompatActivity {
         i.putExtra("SLEEP_AVERAGE", _averageDuration);
         startActivity(i);
     }
-    public void setAlarm(){
+    public void setAlaram(View v){
         Intent i = new Intent(this, AlarmClockActivity.class);
         startActivity(i);
     }

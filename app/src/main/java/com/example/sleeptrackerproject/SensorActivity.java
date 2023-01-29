@@ -37,6 +37,8 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
         _lightSensor = _sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         _humiditySensor = _sensorManager.getDefaultSensor(Sensor.TYPE_RELATIVE_HUMIDITY);
         _temperatureSensor = _sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+
+
     }
 
 
@@ -79,12 +81,9 @@ public class SensorActivity extends AppCompatActivity implements SensorEventList
 
             TextView temperatureTextView = findViewById(R.id.temperature_textview);
             TextView celsiusRecommendationTextView = findViewById(R.id.celsius_recommendation_textview);
-            temperatureTextView.setText(temperature + " °C");
+            temperatureTextView.setText(temperature + "C");
 
             if(Float.parseFloat((String.valueOf(temperature)))>19){
-                celsiusRecommendationTextView.setText(R.string.too_temp);
-            }
-            else if(Float.parseFloat((String.valueOf(temperature)))<0){
                 celsiusRecommendationTextView.setText(R.string.too_temp);
             }
             else{

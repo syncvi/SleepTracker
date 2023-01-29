@@ -9,7 +9,7 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 
-@Database(entities = {SleepSession.class, SleepSessionData.class}, version = 5, exportSchema = false)
+@Database(entities = {SleepSession.class, SleepSessionData.class}, version = 9, exportSchema = false)
 public abstract class SleepSessionDatabase extends RoomDatabase {
     public abstract SleepSessionDao sleepSessionDao();
 

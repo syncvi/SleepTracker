@@ -25,16 +25,11 @@ public class SleepSessionViewHolder extends RecyclerView.ViewHolder {
         long startTime = sleepSession.getStartTime();
         long endTime = sleepSession.getEndTime();
         long duration = sleepSession.getDuration();
-        long hours = duration / 3600;
-        long remainder = duration % 3600;
-        long minutes = remainder / 60;
-        long secs = remainder % 60;
-        String output =  String.format("%02d:%02d:%02d", hours, minutes, secs);
         // String.format("%02d : %02d : %02d", TimeUnit.MILLISECONDS.toHours(endTime)%24, TimeUnit.MILLISECONDS.toMinutes(endTime)%60, TimeUnit.MILLISECONDS.toSeconds(endTime)%60));
         _startTimeTextView.setText("Start Time: " +
                 String.format("%02d : %02d : %02d", (TimeUnit.MILLISECONDS.toHours(startTime)%24)+1, TimeUnit.MILLISECONDS.toMinutes(startTime)%60, TimeUnit.MILLISECONDS.toSeconds(startTime)%60));
         _endTimeTextView.setText("End Time: " +
                 String.format("%02d : %02d : %02d", (TimeUnit.MILLISECONDS.toHours(endTime)%24)+1, TimeUnit.MILLISECONDS.toMinutes(endTime)%60, TimeUnit.MILLISECONDS.toSeconds(endTime)%60));
-        _durationTimeTextView.setText("Duration: " + output);
+        _durationTimeTextView.setText("Duration: " + sleepSession.getDuration());
     }
 }
